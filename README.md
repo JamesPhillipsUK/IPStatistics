@@ -29,5 +29,10 @@ CREATE TABLE IPTable('ID' BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,'IP' VARCHA
 ```
 6. When you want to check your site analytics, simply navigate to your web address /Analyse.php.
 
+## GDPR
+>"A much discussed topic is the IP address. The GDPR states that IP addresses should be considered personal data as it enters the scope of ‘online identifiers’." - eugdprcompliant.com/personal-data.  
+
+As such, you should handle IP addresses as you would with any personal data under GDPR.  I'm not here to offer legal advice, but I ask that if you choose to use software I've created - you ensure that you do so in accordance with the law.
+
 ## Release Details
 This plugin was released on 26th July 2017 under the GNU General Public License v3.0 or later by James Phillips.  See the LICENSE file for more details.
