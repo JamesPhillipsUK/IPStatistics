@@ -1,9 +1,10 @@
 <?php
 namespace IPStatistics
 {
+	defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));
   abstract class userInterface
   {
-    public function buildDataInterface($data)
+    public static function buildDataInterface($data)
     {
       $totalDaysVisitors = $data[1];
       $lastDayVisitors = $data[5];
@@ -31,7 +32,7 @@ namespace IPStatistics
   </p>
 </div>';
     }
-    public function buildGraphInterface($data)
+    public static function buildGraphInterface($data)
     {
       $monthlyUsersAsPercentage = $data[6];
       echo '<style>#graph{margin:0 auto; width:80%; background-color:#EFEFEF;padding:0;}#graph *{padding:0;margin:0;}.month{display:block;text-overflow:clip;white-space:nowrap;overflow:hidden;float:left;}</style>';

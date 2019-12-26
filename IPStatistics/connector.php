@@ -1,9 +1,10 @@
 <?php
 namespace IPStatistics
 {
+	defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));
   abstract class connector
   {
-    private function connect()
+    private static function connect()
     {
       $connection = mysqli_connect(DATABASESERVER, DATABASEUSER, DATABASEPASSWORD, DATABASENAME);
       if (!$connection)
@@ -11,25 +12,25 @@ namespace IPStatistics
       return $connection;
     }
 
-    private function close($conection)
+    private static function close($conection)
     {
       if (!empty($connection))
         mysqli_close($connection);
     }
 
-    public function recordData()
+    public static function recordData()
     {
-      $connection = connect();
+      $connection = connector::connect();
       $iP = mysqli_real_escape_string($connection,mb_convert_encoding($_SERVER["REMOTE_ADDR"], "UTF-8"));
       $date = mysqli_real_escape_string($connection,mb_convert_encoding(date("Y-m-d"), "UTF-8"));
       $time = mysqli_real_escape_string($connection,mb_convert_encoding(date("h:i:sa"), "UTF-8"));
       $month = mysqli_real_escape_string($connection,mb_convert_encoding(date("n"), "UTF-8"));
       $query = "INSERT INTO `IPTable` (`IP`, `Date`, `Time`,`Month`) VALUES ('$iP', '$date', '$time', '$month');";
       mysqli_query($connection,$query);
-      close($connection);
+      connector::close($connection);
     }
 
-    public function getData()
+    public static function getData()
     {
       $totalVisitors = 0;
       $totalDaysVisitors = 0;
@@ -38,7 +39,7 @@ namespace IPStatistics
       $lastMonthVisitors = array();
       $lastDayVisitors = array();
       $monthlyUsersAsPercentage = array();
-      $connection = connect();
+      $connection = connector::connect();
       $query = "SELECT * FROM IPTable WHERE ID > 0 AND Date > CURDATE() - INTERVAL 1 YEAR;";
       $result = mysqli_query($connection,$query) or die('Failed to get values from database.');
       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
@@ -62,15 +63,15 @@ namespace IPStatistics
         for($count = 1; $count < 13; $count++)
         {
           if ($count == $month)
-            $monthlyUsers[count - 1]++;
+            $monthlyUsers[$count - 1]++;
         }
         $totalVisitors++;
       }
-      close($connection);
+      connector::close($connection);
       $count = 0;
       foreach($monthlyUsers as $amount)
       {
-        $monthlyUsersAsPercentage[count] = ($amount/$totalVisitors)*100;
+        $monthlyUsersAsPercentage[$count] = ($amount/$totalVisitors)*100;
         $count++;
       }
       unset($count);

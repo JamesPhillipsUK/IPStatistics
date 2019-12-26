@@ -15,30 +15,32 @@
 **/
 namespace IPStatistics
 {
+  define("AccessToken", true);
+  require_once("databaseLogin.php");
+  require_once("connector.php");
+  require_once("userInterface.php");
+
   class IPStatistics
   {
     public function __construct()
     {
-      require_once("databaseLogin.php");
-      require_once("connector.php");
-      require_once("userInterface.php");
     }
 
     public function record()
     {
-      connector.recordData();
-    }
-
-    public function print()
-    {
-      $data = connector.getData();
-      userInterface.buildDataInterface($data);
+      connector::recordData();
     }
 
     public function data()
     {
-      $data = connector.getData();
-      userInterface.buildGraphInterface($data);
+      $data = connector::getData();
+      userInterface::buildDataInterface($data);
+    }
+
+    public function graph()
+    {
+      $data = connector::getData();
+      userInterface::buildGraphInterface($data);
     }
   }
 }
