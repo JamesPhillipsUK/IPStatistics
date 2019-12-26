@@ -13,8 +13,8 @@ In an aim to be as simple and efficient as possible, this API consists of only:
 
 | Code | Amount | Purpose |
 |:---- |:------ |:------- |
-| PHP | 260 lines | This is the entire API.  Short, sweet, and simple.  (Not including the example file) |
-| Markdown | 61 lines | The README file. |
+| PHP | 261 lines | This is the entire API.  Short, sweet, and simple.  (Not including the example file) |
+| Markdown | 63 lines | The README file. |
 | Text | 675 lines | The license file |
 
 ## Installation
@@ -48,6 +48,8 @@ $stats->graph();// Display a graph of the visit data.
 $stats->data();// Display the raw data, including IP addresses.
 ?>
 ```
+
+- Don't forget to secure your webserver settings so that the IPStatistics directory can't be accessed by your website visitors.
 
 ## GDPR
 
