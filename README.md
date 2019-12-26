@@ -1,38 +1,62 @@
 # IPStatistics
-IPStatistics, Originally created by James Phillips <[james@jamesphillipsuk.com](mailto:james@jamesphillipsuk.com "Send a Message")> 2016 - released to GitHub 2017.  
-IPStatistics is a PHP plugin to allow website admins to monitor their analytics.
+
+IPStatistics, Originally created by James Phillips <[james@jamesphillipsuk.com](mailto:james@jamesphillipsuk.com "Send a Message")> in 2016 - released to GitHub under the GNU GPL v3.0 or later in 2017.  
+IPStatistics is a PHP API to allow website admins to monitor their analytics based on the IP addresses of visitors.
 
 ## About
-IPStatistics is a simple, database-driven PHP Analytics plugin for websites.  It consists of two main scripts: Stat.php  - which logs statistics when run on every page, and Analyse.php - which analyses and formats these statistics for your use.
+
+IPStatistics is a simple, database-driven PHP Analytics API that can be run as a plugin for PHP websites.  It consists of one namespace (IPStatistics), and a driver class (also called IPStatistics), with three API calls: record, graph, and data.  A quick how-to for using IPStatistics can be found in step 4 of the Installation instructions below.
 
 ### Simplicity
-In an aim to be as simple and efficient as possible, this plugin consists of only:
 
-| Code            | Amount    | Purpose                                                                                                |
-|:--------------- |:--------- |:------------------------------------------------------------------------------------------------------ |
-| Includes (.inc) | 6 lines   | To hold database login data above the web root.                                                        |
-| PHP             | 220 lines | This is a combination of both: the mechanism that gathers analytic data, and the one that analyses it. |
+In an aim to be as simple and efficient as possible, this API consists of only:
+
+| Code | Amount | Purpose |
+|:---- |:------ |:------- |
+| PHP | 261 lines | This is the entire API.  Short, sweet, and simple.  (Not including the example file) |
+| Markdown | 63 lines | The README file. |
+| Text | 675 lines | The license file |
 
 ## Installation
-1. Fill in the gaps in DataBaseDetails.inc with your database login details.
-2. Save DataBaseDetails.inc above the web root on your server.
-3. Create a MySQL database and table.  The table needs to contain the following SQL structure: 
+
+1. Save the IPStatistics directory.
+2. Fill in the gaps in IPStatistics/databaseLogin.php with your database login details.
+3. Create a MySQL database and table containing the following SQL structure:
+
 ```SQL
-CREATE TABLE IPTable('ID' BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,'IP' VARCHAR(25) NOT NULL,'Date' DATE NOT NULL,Time VARCHAR(10) NOT NULL,'Month' INT(11) NOT NULL);
+CREATE TABLE IPTable (ID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,IP VARCHAR(25) NOT NULL,Date DATE NOT NULL,Time VARCHAR(10) NOT NULL,Month INT(11) NOT NULL);
 ```
-4. Save Stat.php and Analyse.php below the web root.
-5. Insert the following code into each page of the site where you want to take analytics:
+
+4. Use the following snippets of code where you want to record a visit, display a graph of your visitors over the past year, or display the corresponding raw data.
+
 ```PHP
 <?php
-	include("./Stat.php"); //Gather stats for analytics.
+include("IPStatistics/IPStatistics.php");// Include the IPStatistics API.
+use IPStatistics\IPStatistics as IPStatistics;// Access the API.
+$stats = new IPStatistics();// Create an instance of the Statistics.
+
+...
+
+$stats->record();// Record the visit.
+
+...
+
+$stats->graph();// Display a graph of the visit data.
+
+...
+
+$stats->data();// Display the raw data, including IP addresses.
 ?>
 ```
-6. When you want to check your site analytics, simply navigate to your web address /Analyse.php.
+
+- Don't forget to secure your webserver settings so that the IPStatistics directory can't be accessed by your website visitors.
 
 ## GDPR
+
 >"A much discussed topic is the IP address. The GDPR states that IP addresses should be considered personal data as it enters the scope of ‘online identifiers’." - eugdprcompliant.com/personal-data.  
 
-As such, you should handle IP addresses as you would with any personal data under GDPR.  I'm not here to offer legal advice, but I ask that if you choose to use software I've created - you ensure that you do so in accordance with the law.
+As such, you should handle IP addresses as you would with any personal data under GDPR.  I'm not here to offer legal advice, but if you choose to use software I've created - you must ensure that you do so in accordance with the law.
 
 ## Release Details
-This plugin was released on 26th July 2017 under the GNU General Public License v3.0 or later by James Phillips.  See the LICENSE file for more details.
+
+This software was released on 26th July 2017 under the GNU General Public License v3.0 or later by James Phillips.  See the LICENSE file for more details.
