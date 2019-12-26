@@ -1,6 +1,6 @@
 # IPStatistics
 
-IPStatistics, Originally created by James Phillips <[james@jamesphillipsuk.com](mailto:james@jamesphillipsuk.com "Send a Message")> 2016 - released to GitHub 2017.  
+IPStatistics, Originally created by James Phillips <[james@jamesphillipsuk.com](mailto:james@jamesphillipsuk.com "Send a Message")> in 2016 - released to GitHub under the GNU GPL v3.0 or later in 2017.  
 IPStatistics is a PHP API to allow website admins to monitor their analytics based on the IP addresses of visitors.
 
 ## About
@@ -9,18 +9,18 @@ IPStatistics is a simple, database-driven PHP Analytics API that can be run as a
 
 ### Simplicity
 
-In an aim to be as simple and efficient as possible, this plugin consists of only:
+In an aim to be as simple and efficient as possible, this API consists of only:
 
 | Code | Amount | Purpose |
 |:---- |:------ |:------- |
-| PHP | 222 lines | This is the entire API.  Short, sweet, and simple.  (Not including the example file) |
+| PHP | 260 lines | This is the entire API.  Short, sweet, and simple.  (Not including the example file) |
 | Markdown | 61 lines | The README file. |
 | Text | 675 lines | The license file |
 
 ## Installation
 
-1. Fill in the gaps in IPStatistics/databaseLogin.php with your database login details.
-2. Save the IPStatistics directory.
+1. Save the IPStatistics directory.
+2. Fill in the gaps in IPStatistics/databaseLogin.php with your database login details.
 3. Create a MySQL database and table containing the following SQL structure:
 
 ```SQL
@@ -57,4 +57,4 @@ As such, you should handle IP addresses as you would with any personal data unde
 
 ## Release Details
 
-This plugin was released on 26th July 2017 under the GNU General Public License v3.0 or later by James Phillips.  See the LICENSE file for more details.
+This software was released on 26th July 2017 under the GNU General Public License v3.0 or later by James Phillips.  See the LICENSE file for more details.

@@ -1,9 +1,13 @@
 <?php
 namespace IPStatistics
 {
-	defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));
+	defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));// Security check.
   abstract class connector
   {
+		/**
+		 * Connects to the database using the namespace-level constants defined in databaseLogin.
+		 * @return connection a MySLQi database connection object.
+		 **/
     private static function connect()
     {
       $connection = mysqli_connect(DATABASESERVER, DATABASEUSER, DATABASEPASSWORD, DATABASENAME);
@@ -12,12 +16,19 @@ namespace IPStatistics
       return $connection;
     }
 
+		/**
+		 * Closes a database connection using the namespace-level constants defined in databaseLogin.
+		 * @param connection a MySLQi database connection object.
+		 **/
     private static function close($conection)
     {
       if (!empty($connection))
         mysqli_close($connection);
     }
 
+		/**
+		 * Records a visit to the website and adds it to the database.
+		 **/
     public static function recordData()
     {
       $connection = connector::connect();
@@ -30,6 +41,10 @@ namespace IPStatistics
       connector::close($connection);
     }
 
+		/**
+		 * Gets all of the visit data for a year and returns it as an array.
+		 * @return array the array of database data.
+		 **/
     public static function getData()
     {
       $totalVisitors = 0;
