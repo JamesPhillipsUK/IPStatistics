@@ -43,11 +43,12 @@ namespace IPStatistics
 		 **/
     public static function buildGraphInterface($data)
     {
-      $monthlyUsersAsPercentage = $data[6];
+			$monthlyUsersAsPercentage = $data[6];
+			$totalVisitors = $data[0];
       echo '<style>#graph{margin:0 auto; width:80%; background-color:#EFEFEF;padding:0;}#graph *{padding:0;margin:0;}.month{display:block;text-overflow:clip;white-space:nowrap;overflow:hidden;float:left;}</style>';// Some basic styling needed to make the graph work.
       echo '<div id="graph">
   <h1>Your visitors over the past year</h1>
-  <p>Total: <?php echo $TotalVisitors;?></p>
+  <p>Total: ' . $totalVisitors . '</p>
   <div style="background-color:#FFFF66;width:' . $monthlyUsersAsPercentage[0] . '%;" class="month">
     <p>Jan, ' . round($monthlyUsersAsPercentage[0], 3) . '&#37;</p>
   </div>
