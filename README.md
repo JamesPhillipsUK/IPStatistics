@@ -24,7 +24,7 @@ CREATE TABLE IPTable('ID' BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,'IP' VARCHA
 5. Insert the following code into each page of the site where you want to take analytics:
 ```PHP
 <?php
-	include("./Stat.php"); //Gather stats for analytics.
+  include("./Stat.php"); //Gather stats for analytics.
 ?>
 ```
 6. When you want to check your site analytics, simply navigate to your web address /Analyse.php.
