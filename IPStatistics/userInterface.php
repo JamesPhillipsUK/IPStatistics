@@ -1,13 +1,13 @@
 <?php
 namespace IPStatistics
 {
-	defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));// Security check.
+  defined('AccessToken') or die(header('HTTP/1.0 403 Forbidden'));// Security check.
   abstract class userInterface
   {
-		/**
-		 * Builds the raw data interface from data preformatted by connector::getData and prints it to screen.
-		 * @param data - the data preformatted by connector::getData
-		 **/
+    /**
+     * Builds the raw data interface from data preformatted by connector::getData and prints it to screen.
+     * @param data - the data preformatted by connector::getData
+     **/
     public static function buildDataInterface($data)
     {
       $totalDaysVisitors = $data[1];// Total number of visits today.
@@ -35,16 +35,16 @@ namespace IPStatistics
       echo '</pre>
   </p>
 </div>';
-		}
+    }
 		
-		/**
-		 * Builds the graph interface from data preformatted by connector::getData and prints it to screen.
-		 * @param data - the data preformatted by connector::getData
-		 **/
+    /**
+     * Builds the graph interface from data preformatted by connector::getData and prints it to screen.
+     * @param data - the data preformatted by connector::getData
+     **/
     public static function buildGraphInterface($data)
     {
-			$monthlyUsersAsPercentage = $data[6];
-			$totalVisitors = $data[0];
+      $monthlyUsersAsPercentage = $data[6];
+      $totalVisitors = $data[0];
       echo '<style>#graph{margin:0 auto; width:80%; background-color:#EFEFEF;padding:0;}#graph *{padding:0;margin:0;}.month{display:block;text-overflow:clip;white-space:nowrap;overflow:hidden;float:left;}</style>';// Some basic styling needed to make the graph work.
       echo '<div id="graph">
   <h1>Your visitors over the past year</h1>
